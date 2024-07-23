@@ -7,15 +7,22 @@
 </head>
 <body>
 
-  <div class="wrapper">
-    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" controls></video>
+  <div class="player">
+    <video id="video" width="765" height="430" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+    <div class="controls">
+      <button id="togglePlay" class="player__button">►</button>
+      <button id="rewind">« 10s</button>
+      <button id="fastForward">25s »</button>
+      <input type="range" id="progressBar" class="progress__range" min="0" max="100" value="0">
+      <div id="progressFilled" class="progress__filled"></div>
+      <input type="range" id="volume" class="volume__range" min="0" max="100" value="100">
+      <input type="range" id="playbackSpeed" class="speed__range" min="0.1" max="3" step="0.1" value="1">
+    </div>
     <div class="speed">
-      <div class="speed-bar">1×</div>
+      <div id="speedLabel" class="speed-bar">1×</div>
     </div>
   </div>
 
-<script  src="./script.js">
-  //Your code goes here
-</script>
+  <script src="./script.js"></script>
 </body>
 </html>
