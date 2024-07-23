@@ -1,5 +1,5 @@
 // Get video and control elements
-const video = document.getElementById('video');
+const video = document.getElementById('player__video');
 const playButton = document.getElementById('togglePlay');
 const rewindButton = document.getElementById('rewind');
 const fastForwardButton = document.getElementById('fastForward');
