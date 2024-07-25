@@ -1,55 +1,61 @@
 // Get video and control elements
-const video = document.getElementById('player__video');
-const playButton = document.getElementById('togglePlay');
-const rewindButton = document.getElementById('rewind');
-const fastForwardButton = document.getElementById('fastForward');
-const progressBar = document.getElementById('progressBar');
-const progressFilled = document.getElementById('progressFilled');
-const volumeControl = document.getElementById('volume');
-const playbackSpeedControl = document.getElementById('playbackSpeed');
-const speedLabel = document.getElementById('speedLabel');
+let video, playButton, rewindButton, fastForwardButton, progressBar, progressFilled, volumeControl, playbackSpeedControl, speedLabel;
 
-// Play/Pause Toggle
-playButton.addEventListener('click', () => {
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Get references to the elements
+  video = document.getElementById('video');
+  playButton = document.getElementById('togglePlay');
+  rewindButton = document.getElementById('rewind');
+  fastForwardButton = document.getElementById('fastForward');
+  progressBar = document.getElementById('progressBar');
+  progressFilled = document.getElementById('progressFilled');
+  volumeControl = document.getElementById('volume');
+  playbackSpeedControl = document.getElementById('playbackSpeed');
+  speedLabel = document.getElementById('speedLabel');
+
+  // Play/Pause Toggle
+  playButton.addEventListener('click', () => {
     if (video.paused) {
-        video.play();
-        playButton.textContent = '❚ ❚'; // Pause symbol
+      video.play();
+      playButton.textContent = '❚ ❚'; // Pause symbol
     } else {
-        video.pause();
-        playButton.textContent = '►'; // Play symbol
+      video.pause();
+      playButton.textContent = '►'; // Play symbol
     }
-});
+  });
 
-// Rewind 10 seconds
-rewindButton.addEventListener('click', () => {
+  // Rewind 10 seconds
+  rewindButton.addEventListener('click', () => {
     video.currentTime -= 10;
-});
+  });
 
-// Fast forward 25 seconds
-fastForwardButton.addEventListener('click', () => {
+  // Fast forward 25 seconds
+  fastForwardButton.addEventListener('click', () => {
     video.currentTime += 25;
-});
+  });
 
-// Update progress bar
-video.addEventListener('timeupdate', () => {
+  // Update progress bar
+  video.addEventListener('timeupdate', () => {
     const percent = (video.currentTime / video.duration) * 100;
     progressBar.value = percent;
     progressFilled.style.width = `${percent}%`;
-});
+  });
 
-// Scrub progress bar
-progressBar.addEventListener('input', () => {
+  // Scrub progress bar
+  progressBar.addEventListener('input', () => {
     const time = (progressBar.value / 100) * video.duration;
     video.currentTime = time;
-});
+  });
 
-// Update volume
-volumeControl.addEventListener('input', () => {
+  // Update volume
+  volumeControl.addEventListener('input', () => {
     video.volume = volumeControl.value / 100;
-});
+  });
 
-// Update playback speed
-playbackSpeedControl.addEventListener('input', () => {
+  // Update playback speed
+  playbackSpeedControl.addEventListener('input', () => {
     video.playbackRate = playbackSpeedControl.value;
     speedLabel.textContent = `${playbackSpeedControl.value}×`;
+  });
 });
